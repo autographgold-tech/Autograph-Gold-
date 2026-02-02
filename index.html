@@ -1,328 +1,86 @@
-:root{
-  --bg:#0b1b2b;
-  --panel:#071421;
-  --card:#12293f;
-  --gold:#d4b26a;
-  --text:#ffffff;
-  --muted:rgba(255,255,255,.70);
-  --border:rgba(255,255,255,.10);
-}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Autograph Menu</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
-body{
-  margin:0;
-  font-family:Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  padding-bottom:88px;
-}
+<header class="top">
+  <div class="top-row">
+    <div class="logo">AUTOGRAPH</div>
 
-.no-scroll{ overflow:hidden; }
+    <div class="right-tools">
+      <div class="lang">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="kz">KZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
 
-/* HEADER */
-.top{
-  padding:15px;
-  background:var(--panel);
-  position:sticky;
-  top:0;
-  z-index:20;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
+      <button id="headerCartBtn" class="header-cart">
+        <span class="cart-ico">🛒</span>
+        <span id="headerCartText">0</span>
+      </button>
+    </div>
+  </div>
 
-.top-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:10px;
-}
+  <div class="tabs">
+    <button class="tab active" data-type="kitchen">🍽 <span data-i18n="kitchen">Кухня</span></button>
+    <button class="tab" data-type="bar">🍹 <span data-i18n="bar">Бар</span></button>
+  </div>
 
-.logo{
-  font-size:26px;
-  letter-spacing:4px;
-  color:var(--gold);
-  font-weight:900;
-}
+  <input id="search" class="search" data-i18n-placeholder="search" placeholder="Поиск по меню..."/>
+</header>
 
-.right-tools{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+<main>
+  <div id="menuList"></div>
+</main>
 
-.lang{
-  display:flex;
-  gap:8px;
-}
+<!-- Десктоп корзина -->
+<aside id="cartDesktop" class="cart-desktop"></aside>
 
-.lang-btn{
-  border:1px solid rgba(255,255,255,.14);
-  background:transparent;
-  color:#fff;
-  padding:8px 10px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:900;
-}
+<!-- Мобильная липкая панель корзины -->
+<div id="cartBar" class="cart-bar">
+  <span id="cartSummary">🛒 0 • 0 ₸</span>
+  <button id="openCart" data-i18n="open">Открыть</button>
+</div>
 
-.lang-btn.active{
-  background:var(--gold);
-  color:#111;
-  border-color:rgba(212,178,106,.4);
-}
+<!-- Модалка корзины -->
+<div id="cartModal" class="cart-modal" aria-hidden="true">
+  <div class="cart-window" role="dialog" aria-modal="true">
+    <div class="cart-head">
+      <b data-i18n="cart">Корзина</b>
+      <button id="closeCart" aria-label="Close">✕</button>
+    </div>
 
-.header-cart{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  border:1px solid rgba(255,255,255,.14);
-  background:#06101a;
-  color:#fff;
-  padding:8px 10px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:900;
-  white-space:nowrap;
-}
-.header-cart .cart-ico{ font-size:16px; }
+    <div id="cartList"></div>
 
-.tabs{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-bottom:10px;
-}
+    <textarea id="comment" data-i18n-placeholder="comment" placeholder="Комментарий / стол / VIP"></textarea>
 
-.tab{
-  flex:1;
-  padding:10px;
-  background:#0f253b;
-  border:1px solid rgba(255,255,255,.08);
-  color:white;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:900;
-}
+    <div class="cart-total-col">
+      <div class="line">
+        <span data-i18n="subtotal">Подытог:</span>
+        <b id="subTotal">0 ₸</b>
+      </div>
 
-.tab.active{
-  background:var(--gold);
-  color:black;
-}
+      <div class="line">
+        <span data-i18n="service">Обслуживание 10%:</span>
+        <b id="serviceFee">0 ₸</b>
+      </div>
 
-.search{
-  width:100%;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#06101a;
-  color:#fff;
-  outline:none;
-}
-.search::placeholder{color:rgba(255,255,255,.45)}
+      <div class="line total">
+        <span data-i18n="total">Итого:</span>
+        <b id="totalSum">0 ₸</b>
+      </div>
+    </div>
 
-/* MENU */
-.section-title{
-  margin:14px 10px 8px;
-  padding:10px 12px;
-  border-radius:12px;
-  background:rgba(212,178,106,.10);
-  border:1px solid rgba(212,178,106,.18);
-  color:var(--gold);
-  font-weight:900;
-}
+    <button id="sendWA" class="primary" data-i18n="send">Отправить в WhatsApp</button>
+    <button id="clearCart" class="ghost" data-i18n="clear">Очистить корзину</button>
+  </div>
+</div>
 
-.card{
-  background:var(--card);
-  margin:10px;
-  padding:12px;
-  border-radius:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  border:1px solid rgba(255,255,255,.07);
-  gap:12px;
-}
-
-.card .left{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  max-width:72%;
-}
-
-.card .name{
-  font-weight:900;
-  line-height:1.2;
-}
-
-.card .meta{
-  color:var(--muted);
-  font-size:13px;
-}
-
-.controls{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-.controls button{
-  padding:6px 10px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:#06101a;
-  color:#fff;
-  cursor:pointer;
-  font-weight:900;
-}
-.controls span{
-  min-width:24px;
-  text-align:center;
-  font-weight:900;
-}
-
-/* DESKTOP CART */
-.cart-desktop{
-  position:fixed;
-  right:0;
-  top:76px;
-  width:350px;
-  background:var(--panel);
-  height:calc(100% - 76px);
-  padding:14px;
-  overflow:auto;
-  display:none;
-  border-left:1px solid rgba(255,255,255,.08);
-  z-index:10;
-}
-
-@media(min-width:900px){
-  .cart-desktop{display:block}
-  body{padding-right:350px}
-}
-
-/* MOBILE BAR */
-.cart-bar{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:var(--gold);
-  color:black;
-  padding:14px 14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-weight:900;
-  gap:10px;
-  z-index:30;
-}
-
-@media(min-width:900px){
-  .cart-bar{display:none}
-}
-
-.cart-bar button{
-  border:none;
-  background:rgba(0,0,0,.12);
-  padding:10px 14px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:900;
-}
-
-/* MODAL */
-.cart-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  display:none;
-  justify-content:center;
-  align-items:flex-end;
-  z-index:9999;
-}
-.cart-modal.open{ display:flex; }
-
-.cart-window{
-  background:#0f253b;
-  width:100%;
-  max-height:90%;
-  border-radius:20px 20px 0 0;
-  padding:15px;
-  overflow:auto;
-  border-top:1px solid rgba(255,255,255,.08);
-}
-
-.cart-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-.cart-head button{
-  border:none;
-  background:transparent;
-  color:#fff;
-  font-size:18px;
-  cursor:pointer;
-}
-
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 0;
-  border-bottom:1px dashed rgba(255,255,255,.14);
-  gap:10px;
-}
-
-textarea{
-  width:100%;
-  margin-top:12px;
-  padding:10px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:#06101a;
-  color:#fff;
-  outline:none;
-  resize:vertical;
-}
-
-.cart-total-col{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin:12px 0;
-}
-
-.cart-total-col .line{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-weight:900;
-}
-
-.cart-total-col .line.total{
-  padding-top:8px;
-  border-top:1px solid rgba(255,255,255,.12);
-  font-weight:900;
-}
-
-.primary{
-  background:var(--gold);
-  border:none;
-  padding:12px;
-  width:100%;
-  font-weight:900;
-  border-radius:12px;
-  cursor:pointer;
-  color:#111;
-}
-.ghost{
-  margin-top:10px;
-  background:transparent;
-  border:1px solid rgba(255,255,255,.14);
-  padding:12px;
-  width:100%;
-  border-radius:12px;
-  color:#fff;
-  cursor:pointer;
-}
+<script src="app.js"></script>
+</body>
+</html>
