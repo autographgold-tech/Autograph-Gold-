@@ -6,14 +6,12 @@
   <title>Autograph Menu</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
 <header class="top">
   <div class="top-row">
     <div class="logo">AUTOGRAPH</div>
 
-    <!-- RU / KZ -->
     <div class="lang">
       <button class="lang-btn active" data-lang="ru">RU</button>
       <button class="lang-btn" data-lang="kz">KZ</button>
@@ -42,7 +40,7 @@
 </div>
 
 <!-- Мобильная корзина (попап) -->
-<div id="cartModal" class="cart-modal hidden" aria-hidden="true">
+<div id="cartModal" class="cart-modal" aria-hidden="true">
   <div class="cart-window" role="dialog" aria-modal="true">
     <div class="cart-head">
       <b data-i18n="cart">Корзина</b>
@@ -53,9 +51,21 @@
 
     <textarea id="comment" data-i18n-placeholder="comment" placeholder="Комментарий / стол / VIP"></textarea>
 
-    <div class="cart-total">
-      <span data-i18n="total">Итого:</span>
-      <b id="totalSum">0 ₸</b>
+    <div class="cart-total-col">
+      <div class="line">
+        <span data-i18n="subtotal">Подытог:</span>
+        <b id="subTotal">0 ₸</b>
+      </div>
+
+      <div class="line">
+        <span data-i18n="service">Обслуживание 10%:</span>
+        <b id="serviceFee">0 ₸</b>
+      </div>
+
+      <div class="line total">
+        <span data-i18n="total">Итого:</span>
+        <b id="totalSum">0 ₸</b>
+      </div>
     </div>
 
     <button id="sendWA" class="primary" data-i18n="send">Отправить в WhatsApp</button>
