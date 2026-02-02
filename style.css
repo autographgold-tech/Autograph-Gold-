@@ -199,7 +199,7 @@ body{
   body{padding-right:350px}
 }
 
-/* MOBILE BAR (всегда видна на телефоне) */
+/* MOBILE BAR */
 .cart-bar{
   position:fixed;
   bottom:0;
@@ -325,16 +325,4 @@ textarea{
   border-radius:12px;
   color:#fff;
   cursor:pointer;
-}
-
-/* small helper */
-.badge{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:#06101a;
-  color:#fff;
-  font-weight:900;
-  font-size:12px;
 }
