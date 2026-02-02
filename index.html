@@ -12,13 +12,12 @@
 <header class="top">
   <div class="logo">AUTOGRAPH</div>
 
-  <!-- Переключатель Кухня / Бар -->
   <div class="tabs">
     <button class="tab active" data-type="kitchen">🍽 Кухня</button>
     <button class="tab" data-type="bar">🍹 Бар</button>
   </div>
 
-  <input id="search" class="search" placeholder="Поиск..."/>
+  <input id="search" class="search" placeholder="Поиск по меню..."/>
 </header>
 
 <main>
@@ -28,13 +27,13 @@
 <!-- Десктоп корзина -->
 <aside id="cartDesktop" class="cart-desktop"></aside>
 
-<!-- Мобильная липкая кнопка -->
+<!-- Мобильная липкая панель корзины -->
 <div id="cartBar" class="cart-bar hidden">
-  <span id="cartSummary"></span>
+  <span id="cartSummary">🛒 0 поз. • 0 ₸</span>
   <button id="openCart">Открыть</button>
 </div>
 
-<!-- Мобильная корзина popup -->
+<!-- Мобильная корзина (попап) -->
 <div id="cartModal" class="cart-modal hidden">
   <div class="cart-window">
     <div class="cart-head">
@@ -52,6 +51,7 @@
     </div>
 
     <button id="sendWA" class="primary">Отправить в WhatsApp</button>
+    <button id="clearCart" class="ghost">Очистить корзину</button>
   </div>
 </div>
 
