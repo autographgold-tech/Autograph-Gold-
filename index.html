@@ -10,14 +10,22 @@
 <body>
 
 <header class="top">
-  <div class="logo">AUTOGRAPH</div>
+  <div class="top-row">
+    <div class="logo">AUTOGRAPH</div>
 
-  <div class="tabs">
-    <button class="tab active" data-type="kitchen">🍽 Кухня</button>
-    <button class="tab" data-type="bar">🍹 Бар</button>
+    <!-- RU / KZ -->
+    <div class="lang">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="kz">KZ</button>
+    </div>
   </div>
 
-  <input id="search" class="search" placeholder="Поиск по меню..."/>
+  <div class="tabs">
+    <button class="tab active" data-type="kitchen">🍽 <span data-i18n="kitchen">Кухня</span></button>
+    <button class="tab" data-type="bar">🍹 <span data-i18n="bar">Бар</span></button>
+  </div>
+
+  <input id="search" class="search" data-i18n-placeholder="search" placeholder="Поиск по меню..."/>
 </header>
 
 <main>
@@ -29,29 +37,29 @@
 
 <!-- Мобильная липкая панель корзины -->
 <div id="cartBar" class="cart-bar hidden">
-  <span id="cartSummary">🛒 0 поз. • 0 ₸</span>
-  <button id="openCart">Открыть</button>
+  <span id="cartSummary">🛒 0</span>
+  <button id="openCart" data-i18n="open">Открыть</button>
 </div>
 
 <!-- Мобильная корзина (попап) -->
-<div id="cartModal" class="cart-modal hidden">
-  <div class="cart-window">
+<div id="cartModal" class="cart-modal hidden" aria-hidden="true">
+  <div class="cart-window" role="dialog" aria-modal="true">
     <div class="cart-head">
-      <b>Корзина</b>
-      <button id="closeCart">✕</button>
+      <b data-i18n="cart">Корзина</b>
+      <button id="closeCart" aria-label="Close">✕</button>
     </div>
 
     <div id="cartList"></div>
 
-    <textarea id="comment" placeholder="Комментарий / стол / VIP"></textarea>
+    <textarea id="comment" data-i18n-placeholder="comment" placeholder="Комментарий / стол / VIP"></textarea>
 
     <div class="cart-total">
-      <span>Итого:</span>
+      <span data-i18n="total">Итого:</span>
       <b id="totalSum">0 ₸</b>
     </div>
 
-    <button id="sendWA" class="primary">Отправить в WhatsApp</button>
-    <button id="clearCart" class="ghost">Очистить корзину</button>
+    <button id="sendWA" class="primary" data-i18n="send">Отправить в WhatsApp</button>
+    <button id="clearCart" class="ghost" data-i18n="clear">Очистить корзину</button>
   </div>
 </div>
 
