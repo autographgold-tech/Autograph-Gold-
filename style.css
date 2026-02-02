@@ -6,6 +6,8 @@ body{
   padding-bottom:90px;
 }
 
+.no-scroll{ overflow:hidden; }
+
 /* HEADER */
 .top{
   padding:15px;
@@ -16,12 +18,37 @@ body{
   border-bottom:1px solid rgba(255,255,255,.06);
 }
 
+.top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
 .logo{
   font-size:28px;
   letter-spacing:4px;
   color:#d4b26a;
-  text-align:center;
-  margin-bottom:10px;
+}
+
+.lang{
+  display:flex;
+  gap:8px;
+}
+.lang-btn{
+  border:1px solid rgba(255,255,255,.14);
+  background:transparent;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:800;
+}
+.lang-btn.active{
+  background:#d4b26a;
+  color:#111;
+  border-color:rgba(212,178,106,.4);
 }
 
 .tabs{
@@ -39,6 +66,7 @@ body{
   color:white;
   border-radius:10px;
   cursor:pointer;
+  font-weight:800;
 }
 
 .tab.active{
@@ -65,7 +93,7 @@ body{
   background:rgba(212,178,106,.10);
   border:1px solid rgba(212,178,106,.18);
   color:#d4b26a;
-  font-weight:700;
+  font-weight:800;
 }
 
 .card{
@@ -75,7 +103,7 @@ body{
   border-radius:12px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-start;
   border:1px solid rgba(255,255,255,.07);
   gap:12px;
 }
@@ -84,10 +112,11 @@ body{
   display:flex;
   flex-direction:column;
   gap:6px;
+  max-width:72%;
 }
 
 .card .name{
-  font-weight:700;
+  font-weight:800;
   line-height:1.2;
 }
 
@@ -112,7 +141,7 @@ body{
 .controls span{
   min-width:24px;
   text-align:center;
-  font-weight:700;
+  font-weight:800;
 }
 
 /* DESKTOP CART */
@@ -147,8 +176,9 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  font-weight:bold;
+  font-weight:900;
   gap:10px;
+  z-index:6;
 }
 .cart-bar button{
   border:none;
@@ -156,7 +186,7 @@ body{
   padding:10px 14px;
   border-radius:12px;
   cursor:pointer;
-  font-weight:800;
+  font-weight:900;
 }
 .hidden{display:none}
 
@@ -221,6 +251,7 @@ textarea{
   justify-content:space-between;
   margin:12px 0;
   font-size:16px;
+  font-weight:900;
 }
 
 .primary{
@@ -228,7 +259,7 @@ textarea{
   border:none;
   padding:12px;
   width:100%;
-  font-weight:bold;
+  font-weight:900;
   border-radius:12px;
   cursor:pointer;
 }
