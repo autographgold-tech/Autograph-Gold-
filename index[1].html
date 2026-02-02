@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Autograph Menu</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-row">
+    <div class="logo">AUTOGRAPH</div>
+
+    <div class="right-tools">
+      <div class="lang">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="kz">KZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <button id="headerCartBtn" class="header-cart">
+        <span class="cart-ico">🛒</span>
+        <span id="headerCartText">0</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-type="kitchen">🍽 <span data-i18n="kitchen">Кухня</span></button>
+    <button class="tab" data-type="bar">🍹 <span data-i18n="bar">Бар</span></button>
+  </div>
+
+  <input id="search" class="search" data-i18n-placeholder="search" placeholder="Поиск по меню..."/>
+</header>
+
+<main>
+  <div id="menuList"></div>
+</main>
+
+<!-- Десктоп корзина -->
+<aside id="cartDesktop" class="cart-desktop"></aside>
+
+<!-- Мобильная липкая панель корзины -->
+<div id="cartBar" class="cart-bar">
+  <span id="cartSummary">🛒 0 • 0 ₸</span>
+  <button id="openCart" data-i18n="open">Открыть</button>
+</div>
+
+<!-- Модалка корзины -->
+<div id="cartModal" class="cart-modal" aria-hidden="true">
+  <div class="cart-window" role="dialog" aria-modal="true">
+    <div class="cart-head">
+      <b data-i18n="cart">Корзина</b>
+      <button id="closeCart" aria-label="Close">✕</button>
+    </div>
+
+    <div id="cartList"></div>
+
+    <textarea id="comment" data-i18n-placeholder="comment" placeholder="Комментарий / стол / VIP"></textarea>
+
+    <div class="cart-total-col">
+      <div class="line">
+        <span data-i18n="subtotal">Подытог:</span>
+        <b id="subTotal">0 ₸</b>
+      </div>
+
+      <div class="line">
+        <span data-i18n="service">Обслуживание 10%:</span>
+        <b id="serviceFee">0 ₸</b>
+      </div>
+
+      <div class="line total">
+        <span data-i18n="total">Итого:</span>
+        <b id="totalSum">0 ₸</b>
+      </div>
+    </div>
+
+    <button id="sendWA" class="primary" data-i18n="send">Отправить в WhatsApp</button>
+    <button id="clearCart" class="ghost" data-i18n="clear">Очистить корзину</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
