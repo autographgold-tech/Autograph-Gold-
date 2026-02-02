@@ -190,15 +190,19 @@ body{
 }
 .hidden{display:none}
 
-/* MODAL */
+/* MODAL (важно: по умолчанию скрыт) */
 .cart-modal{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.65);
-  display:flex;
+  display:none;               /* <-- скрыт */
   justify-content:center;
   align-items:flex-end;
-  z-index:10;
+  z-index:9999;               /* <-- поверх всего */
+  pointer-events:auto;
+}
+.cart-modal.open{
+  display:flex;               /* <-- показ */
 }
 
 .cart-window{
@@ -246,11 +250,23 @@ textarea{
   resize:vertical;
 }
 
-.cart-total{
+.cart-total-col{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:12px 0;
+}
+
+.cart-total-col .line{
   display:flex;
   justify-content:space-between;
-  margin:12px 0;
-  font-size:16px;
+  align-items:center;
+  font-weight:800;
+}
+
+.cart-total-col .line.total{
+  padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.12);
   font-weight:900;
 }
 
