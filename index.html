@@ -1,1 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Autograph — Меню</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="logo">AUTOGRAPH</div>
+    <div class="sub">Menu</div>
+  </div>
+
+  <div class="search-wrap">
+    <input id="search" class="search" placeholder="Поиск по меню (например: том ям, ролл, виски)..." />
+    <div id="chips" class="chips"></div>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="menu">
+    <div id="menuList"></div>
+  </section>
+
+  <aside class="cart">
+    <div class="cart-head">
+      <h2>Корзина</h2>
+      <button id="clearCart" class="btn ghost">Очистить</button>
+    </div>
+
+    <div id="cartList" class="cart-list"></div>
+
+    <div class="cart-footer">
+      <div class="total">
+        <span>Итого:</span>
+        <b id="totalSum">0 ₸</b>
+      </div>
+
+      <div class="note">
+        <label>Комментарий (стол / VIP / пожелания)</label>
+        <textarea id="comment" rows="2" placeholder="Например: VIP Босс, стол 3, без льда..."></textarea>
+      </div>
+
+      <button id="sendWA" class="btn primary">Отправить заказ в WhatsApp</button>
+      <div class="hint">Заказ отправится сообщением на номер администратора.</div>
+    </div>
+  </aside>
+</main>
+
+<footer class="footer">
+  Autograph © 2026
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
+
 
