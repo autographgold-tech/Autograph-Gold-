@@ -1,0 +1,49 @@
+body{
+  font-family: Arial;
+  background:#111;
+  color:white;
+  margin:0;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background:#000;
+}
+
+.lang button{
+  margin-left:5px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  padding:12px;
+  border-bottom:1px solid #333;
+}
+
+.cart-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:15px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+.cart{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:300px;
+  height:100%;
+  background:#222;
+  padding:20px;
+  overflow:auto;
+  transition:.3s;
+}
+
+.cart.open{
+  right:0;
+}
