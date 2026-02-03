@@ -2,45 +2,100 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Autograph Gold Menu</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Autograph — QR Menu</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
 <header class="top">
-  <h1>Autograph Gold</h1>
+  <div class="brand">
+    <img class="logo" src="logo.jpg" alt="Autograph"/>
+    <div class="brand-text">
+      <div class="brand-name">AUTOGRAPH</div>
+      <div class="brand-sub" id="brandSub">KARAOKE</div>
+    </div>
+  </div>
 
   <div class="lang">
-    <button onclick="setLang('ru')">RU</button>
-    <button onclick="setLang('kz')">KZ</button>
-    <button onclick="setLang('en')">EN</button>
+    <button class="lang-btn active" data-lang="ru">RU</button>
+    <button class="lang-btn" data-lang="kz">KZ</button>
+    <button class="lang-btn" data-lang="en">EN</button>
   </div>
 </header>
 
+<nav class="tabs">
+  <button class="tab active" data-cat="kitchen" id="tabKitchen">🍽 Кухня</button>
+  <button class="tab" data-cat="bar" id="tabBar">🍸 Бар</button>
+  <button class="tab" data-cat="hookah" id="tabHookah">💨 Кальяны</button>
 
-<div id="menu"></div>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Поиск…"/>
+  </div>
 
+  <button class="calc-open" id="openCalc">🧮</button>
+</nav>
 
-<button class="cart-btn" onclick="toggleCart()">
+<main id="menu"></main>
+
+<button class="cart-fab" id="openCart">
   🛒 <span id="cartCount">0</span>
 </button>
 
-
-<div id="cart" class="cart">
-  <h2>Корзина</h2>
-
-  <div id="cartItems"></div>
-
-  <div class="total">
-    <p>Сумма: <span id="sum">0</span> ₸</p>
-    <p>Обслуживание 10%: <span id="service">0</span> ₸</p>
-    <h3>ИТОГО: <span id="total">0</span> ₸</h3>
+<!-- CART DRAWER -->
+<aside class="drawer" id="cartDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="cartTitle">Корзина</h2>
+    <button class="icon-btn" id="closeCart">✕</button>
   </div>
 
-  <button onclick="sendOrder()">Отправить в WhatsApp</button>
-  <button onclick="toggleCart()">Закрыть</button>
+  <div id="cartItems" class="cart-items"></div>
+
+  <div class="totals">
+    <div class="row">
+      <span id="lblSum">Сумма</span>
+      <b><span id="sum">0</span> ₸</b>
+    </div>
+    <div class="row">
+      <span id="lblService">Обслуживание 10%</span>
+      <b><span id="service">0</span> ₸</b>
+    </div>
+    <div class="row total">
+      <span id="lblTotal">Итого</span>
+      <b><span id="total">0</span> ₸</b>
+    </div>
+
+    <button class="primary" id="sendOrder">Отправить в WhatsApp</button>
+    <button class="secondary" id="clearCart">Очистить</button>
+  </div>
+</aside>
+
+<!-- CALC MODAL -->
+<div class="modal" id="calcModal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="calcTitle">Калькулятор</h2>
+      <button class="icon-btn" id="closeCalc">✕</button>
+    </div>
+
+    <label class="field">
+      <span id="calcInputLabel">Сумма счёта (₸)</span>
+      <input id="calcInput" type="number" inputmode="numeric" placeholder="0"/>
+    </label>
+
+    <div class="calc-grid">
+      <div class="calc-box">
+        <div class="muted" id="calcServiceLabel">Обслуживание 10%</div>
+        <div class="big"><span id="calcService">0</span> ₸</div>
+      </div>
+      <div class="calc-box">
+        <div class="muted" id="calcTotalLabel">Итого</div>
+        <div class="big"><span id="calcTotal">0</span> ₸</div>
+      </div>
+    </div>
+
+    <button class="secondary full" id="calcUseCart">Добавить сумму в корзину</button>
+  </div>
 </div>
 
 <script src="script.js"></script>
