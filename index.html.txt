@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autograph Gold Menu</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<header class="top">
+  <h1>Autograph Gold</h1>
+
+  <div class="lang">
+    <button onclick="setLang('ru')">RU</button>
+    <button onclick="setLang('kz')">KZ</button>
+    <button onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+
+<div id="menu"></div>
+
+
+<button class="cart-btn" onclick="toggleCart()">
+  🛒 <span id="cartCount">0</span>
+</button>
+
+
+<div id="cart" class="cart">
+  <h2>Корзина</h2>
+
+  <div id="cartItems"></div>
+
+  <div class="total">
+    <p>Сумма: <span id="sum">0</span> ₸</p>
+    <p>Обслуживание 10%: <span id="service">0</span> ₸</p>
+    <h3>ИТОГО: <span id="total">0</span> ₸</h3>
+  </div>
+
+  <button onclick="sendOrder()">Отправить в WhatsApp</button>
+  <button onclick="toggleCart()">Закрыть</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
